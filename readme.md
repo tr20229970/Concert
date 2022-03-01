@@ -47,7 +47,7 @@
     Witch seats would you like?
     Row? 3
     # of Seats? 5
-    test4Seat [3][1] is now purchased
+    Seat [3][1] is now purchased
     Seat [3][2] is now purchased
     Seat [3][3] is now purchased
     Seat [3][4] is now purchased

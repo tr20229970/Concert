@@ -271,7 +271,7 @@ class Main
         }
     }
 
-    // "Buys" mutiple Seat, if the seat is not already taken
+    // "Buys" multiple Seat, if the seat is not already taken
     private static String multipleBuy(Concert[][] ticketArray, int row, int numberOfSeats)
     {
         int count = 0;
@@ -293,7 +293,6 @@ class Main
                     count++;
                 } else
                 {
-                    System.out.print("Error" + count);
                     count = 0;
                     startingSeat = i;
                 }
@@ -306,7 +305,6 @@ class Main
             return "There is not enough room in this row, please choose another row";
         }
 
-        System.out.print("test" + (startingSeat + numberOfSeats));
         for (int i = startingSeat + 1; i <= (startingSeat + numberOfSeats); i++)
         {
             ticketArray[row][i].updateSoldStatus(true);

@@ -13,8 +13,9 @@ import java.util.Scanner;
 class Main
 {
 
-    public static void main(String[] args) {
-        Concert ticketArray[][] = new Concert[9][10];
+    public static void main(String[] args)
+    {
+        Concert[][] ticketArray = new Concert[10][10];
         Scanner reader = new Scanner(System.in);
         int input = 0;
         newSeat(ticketArray, 3, 5, 8, 30, 40, 50);
@@ -23,15 +24,17 @@ class Main
 
         System.out.print(
                 "    1. Buy a Seat.\n" +
-                        "    2. Buy Mutiple Seats.\n" +
+                        "    2. Buy Multiple Seats.\n" +
                         "    3. Display Seats.\n" +
                         "    4. Check Prices.\n" +
                         "    5. Options.\n" +
                         "    6. Exit. \n " +
                         "Input? ");
         input = reader.nextInt();
-        while (input != -1) {
-            switch (input) {
+        while (input != -1)
+        {
+            switch (input)
+            {
 
                 // One Seat
                 case 1:
@@ -122,24 +125,24 @@ class Main
     // Displays the Grid of Seats
     static private String display(Concert ticketArray[][])
     {
-        String output = "\n-           Please choose a Seat         -\n      [1] [2] [3] [4] [5] [6] [7] [8] [9]";
+        String output = "\n-             Please choose a Seat           -\n      [1] [2] [3] [4] [5] [6] [7] [8] [9] [10]";
 
         for(int i = 0; i < ticketArray.length - 1; i++)
         {
             output += "\n [" + (i + 1) + "] ";
-            for(int k = 0; k < ticketArray[i].length - 1; k++)
+            for(int k = 0; k < ticketArray[i].length ; k++)
             {
 
                 output += "  " + ticketArray[i][k].getInfo();
             }
         }
-        return output + "\n-                Thank you               -\n";
+        return output + "\n-                  Thank you                 -\n";
     }
 
     // "Buys" the Seat, if the seat is not already taken
     private static String buy(Concert[][] ticketArray, int row, int col)
     {
-        if(row >= ticketArray.length - 1 || row < 0 )
+        if(row >= ticketArray.length - 1|| row < 0 )
             return "Not a Valid Row";
         if(col >= ticketArray[row].length ||  col < 0 )
             return "Not a Valid Column";
@@ -166,7 +169,7 @@ class Main
 
             if (numberOfSeats >= ticketArray[row].length)
                 return "To Many Seats";
-            if (row >= ticketArray.length)
+            if (row >= ticketArray.length - 1)
                 return "Not a Valid Row";
 
             for (int i = 0; i < ticketArray[row].length + 1; i++)

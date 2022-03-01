@@ -10,8 +10,8 @@
 
 public class Concert
 {
-    boolean sold;
-    int price;
+    private boolean sold;
+    private int price;
 
     Concert()
     {

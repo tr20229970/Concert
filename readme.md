@@ -18,10 +18,11 @@
     ------------------------------------------- 
     1. Buy a Seat.
     2. Buy Mutiple Seats.
-    3. Display Seats.
-    4. Check Prices.
-    5. Options.
-    6. Exit. 
+    3. Seat by Price.
+    4. Display Seats.
+    5. Check Prices.
+    6. Options.
+    7. Exit. 
     Input? 1
 
     -          Please choose a Seat         -
@@ -39,19 +40,19 @@
     Witch seat would you like?
     Row? 2
     Col? 2
-    Seat [2][2] is now yours
+    Seat [2][2] is now purchased
 
     Input? 2
     Witch seats would you like?
     Row? 3
     # of Seats? 5
-    test4Seat [3][1] is now yours
-    Seat [3][2] is now yours
-    Seat [3][3] is now yours
-    Seat [3][4] is now yours
-    Seat [3][5] is now yours
+    test4Seat [3][1] is now purchased
+    Seat [3][2] is now purchased
+    Seat [3][3] is now purchased
+    Seat [3][4] is now purchased
+    Seat [3][5] is now purchased
 
-    Input? 3
+    Input? 4
 
     -          Please choose a Seat         -
       [1] [2] [3] [4] [5] [6] [7] [8] [9]

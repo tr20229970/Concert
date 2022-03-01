@@ -3,7 +3,7 @@
  | @Name Concert                                |
  | @By Tyler Romanowski      @Created  2.28.22  |
  | @File Main.java           @Modified 2.28.22  |
- | @Comment : An Array Exercise, that handles   |
+ | @Comment: An 2D Array Exercise, that handles |
  | input, removal, indexing, and printing       |
  -----------------------------------------------
 */
@@ -19,7 +19,10 @@ class Main
         Scanner reader = new Scanner(System.in);
         int input = 0;
 
+        // Were the Price Changes Happen
         final int[]  SEATING_CHART = {3,6};
+
+
         final int firstPrice = 30;
         final int secondPrice = 40;
         final int thirdPrice = 50;
@@ -103,6 +106,8 @@ class Main
         }
     }
 
+
+    // Chooses a seat, depending on the Price
     private static String chooseByPrice(Concert[][] ticketArray, int[]  chart, int firstPrice, int secondPrice, int thirdPrice, int input)
     {
         boolean run = true;
@@ -117,7 +122,6 @@ class Main
                        if (!ticketArray[i][k].getSoldInfo())
                        {
                            ticketArray[i][k].updateSoldStatus(true);
-                           run = false;
                            return "Seat [" + (i + 1) + "]" + "[" + (k + 1) + "] is now yours\n";
                        }
 
@@ -133,7 +137,6 @@ class Main
                         if (!ticketArray[i][k].getSoldInfo())
                         {
                             ticketArray[i][k].updateSoldStatus(true);
-                            run = false;
                             return "Seat [" + (i + 1) + "]" + "[" + (k + 1) + "] is now yours\n";
                         }
 
@@ -149,7 +152,6 @@ class Main
                         if (!ticketArray[i][k].getSoldInfo())
                         {
                             ticketArray[i][k].updateSoldStatus(true);
-                            run = false;
                             return "Seat [" + (i + 1) + "]" + "[" + (k + 1) + "] is now yours\n";
                         }
 
@@ -163,6 +165,8 @@ class Main
         }
         return "No Seats are Available in that Price Range";
     }
+
+
     // Declares all the seats in the Concert Array
     private static void newSeat(Concert[][] ticketArray, int first, int second, int firstPrice, int secondPrice, int thirdPrice)
     {
@@ -220,7 +224,7 @@ class Main
         if(col >= ticketArray[row].length ||  col < 0 )
             return "Not a Valid Column";
 
-        if (ticketArray[row][col].getSoldInfo() == false)
+        if (!ticketArray[row][col].getSoldInfo())
         {
             ticketArray[row][col].updateSoldStatus(true);
             return "Seat [" + (row + 1) + "]" + "[" + (col + 1) + "] is now yours\n";
@@ -231,9 +235,9 @@ class Main
             return "Sorry that seat is taken";
         }
     }
-    private static String buy(Concert[][] ticketArray, int row, int numberOfSeats , boolean mutiple)
+    private static String buy(Concert[][] ticketArray, int row, int numberOfSeats , boolean multiple)
     {
-        if (mutiple)
+        if (multiple)
         {
             int count = 0;
             int startingSeat = -1;
@@ -249,7 +253,7 @@ class Main
             {
                 if (!(count >= numberOfSeats))
                 {
-                    if (ticketArray[row][i].getSoldInfo() == false)
+                    if (!ticketArray[row][i].getSoldInfo())
                     {
                         count++;
                     }

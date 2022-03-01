@@ -18,17 +18,25 @@ class Main
         Concert[][] ticketArray = new Concert[10][10];
         Scanner reader = new Scanner(System.in);
         int input = 0;
-        newSeat(ticketArray, 3, 5, 8, 30, 40, 50);
+
+        final int[]  SEATING_CHART = {3,6};
+        final int firstPrice = 30;
+        final int secondPrice = 40;
+        final int thirdPrice = 50;
+
+
+        newSeat(ticketArray, SEATING_CHART[0], SEATING_CHART[1], firstPrice, secondPrice, thirdPrice);
 
         System.out.println("-------------------------------------------\n                   Welcome to \n                The Ant Theater\n------------------------------------------- ");
 
-        System.out.print(
-                "    1. Buy a Seat.\n" +
-                        "    2. Buy Multiple Seats.\n" +
-                        "    3. Display Seats.\n" +
-                        "    4. Check Prices.\n" +
-                        "    5. Options.\n" +
-                        "    6. Exit. \n " +
+        System.out.print(display(ticketArray) +
+                        "\n1. Buy a Seat.\n" +
+                        "2. Buy Multiple Seats.\n" +
+                        "3. Seat by Price.\n" +
+                        "4. Display Seats.\n" +
+                        "5. Check Prices.\n" +
+                        "6. Options.\n" +
+                        "7. Exit. \n " +
                         "Input? ");
         input = reader.nextInt();
         while (input != -1)
@@ -45,7 +53,7 @@ class Main
                     System.out.println(buy(ticketArray, input, reader.nextInt() - 1));
                     break;
 
-                // Mutiple Seats
+                // Multiple Seats
                 case 2:
                     System.out.print("Witch seats would you like?\n Row? ");
                     input = reader.nextInt() - 1;
@@ -53,13 +61,19 @@ class Main
                     System.out.println(buy(ticketArray, input, reader.nextInt() - 1, true));
                     break;
 
-                // Displays Screen
+                // Picks a Seat Depending on Price Point
                 case 3:
+                    System.out.print(" Witch Price Point?");
+                    System.out.println(chooseByPrice(ticketArray, SEATING_CHART, firstPrice, secondPrice,thirdPrice, reader.nextInt()));
+                    break;
+
+                    // Displays Screen
+                case 4:
                     System.out.println(display(ticketArray));
                     break;
 
                 // Gets the Price
-                case 4:
+                case 5:
                     System.out.println(display(ticketArray));
                     System.out.print("Witch seat would you like the Price for?\n Row? ");
                     input = reader.nextInt() - 1;
@@ -67,14 +81,15 @@ class Main
                     System.out.println(" That Seat Costs $" + ticketArray[input][reader.nextInt() - 1].getPrice());
                     break;
 
+
                 //Options
-                case 5:
-                    System.out.println("    1. Buy a Seat.\n" + "    2. Buy Mutiple Seats.\n" + "    3. Display Seats.\n" + "    4. Check Prices.\n" + "    5. Options.\n" + "    6. Exit. \n ");
+                case 6:
+                    System.out.println("    1. Buy a Seat.\n" + "    2. Buy Multiple Seats.\n" + "    3. Seat by Price.\n" + "    4. Display Seats.\n" + "    5. Check Prices.\n" + "    6. Options.\n" + "    7. Exit. \n ");
                     break;
 
                 //Exit
-                case 6:
-                    System.out.println("Thanks for visting!");
+                case 7:
+                    System.out.println("Thanks for Visiting!");
                     break;
 
 
@@ -88,8 +103,68 @@ class Main
         }
     }
 
+    private static String chooseByPrice(Concert[][] ticketArray, int[]  chart, int firstPrice, int secondPrice, int thirdPrice, int input)
+    {
+        boolean run = true;
+        while(run)
+        {
+            if(input == firstPrice)
+            {
+               for(int i = 0; i < chart[0]; i++)
+               {
+                   for(int k = 0; k < ticketArray[i].length; k++)
+                   {
+                       if (!ticketArray[i][k].getSoldInfo())
+                       {
+                           ticketArray[i][k].updateSoldStatus(true);
+                           run = false;
+                           return "Seat [" + (i + 1) + "]" + "[" + (k + 1) + "] is now yours\n";
+                       }
+
+                   }
+               }
+            }
+            if(input == secondPrice)
+            {
+                for(int i = chart[0]; i < chart[1]; i++)
+                {
+                    for(int k = 0; k < ticketArray[i].length; k++)
+                    {
+                        if (!ticketArray[i][k].getSoldInfo())
+                        {
+                            ticketArray[i][k].updateSoldStatus(true);
+                            run = false;
+                            return "Seat [" + (i + 1) + "]" + "[" + (k + 1) + "] is now yours\n";
+                        }
+
+                    }
+                }
+            }
+            if(input == thirdPrice)
+            {
+                for(int i = chart[1]; i < ticketArray.length; i++)
+                {
+                    for(int k = 0; k < ticketArray[i].length; k++)
+                    {
+                        if (!ticketArray[i][k].getSoldInfo())
+                        {
+                            ticketArray[i][k].updateSoldStatus(true);
+                            run = false;
+                            return "Seat [" + (i + 1) + "]" + "[" + (k + 1) + "] is now yours\n";
+                        }
+
+                    }
+                }
+            }
+            else
+                run = false;
+
+
+        }
+        return "No Seats are Available in that Price Range";
+    }
     // Declares all the seats in the Concert Array
-    private static void newSeat(Concert[][] ticketArray, int first, int second, int third, int firstPrice, int secondPrice, int thirdPrice)
+    private static void newSeat(Concert[][] ticketArray, int first, int second, int firstPrice, int secondPrice, int thirdPrice)
     {
         for(int i = 0; i < first; i++)
         {
@@ -105,7 +180,6 @@ class Main
             for(int k = 0; k < ticketArray.length; k++)
             {
                 ticketArray[i][k] = new Concert(secondPrice);
-
             }
         }
 
@@ -115,7 +189,6 @@ class Main
             {
 
                 ticketArray[i][k] = new Concert(thirdPrice);
-
             }
         }
 

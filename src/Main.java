@@ -60,7 +60,7 @@ class Main
                     temp = reader.nextInt();
 
                     if ((temp - 2 >= 0))
-                        if (ticketArray[input][temp - 2].getSoldInfo() && !(ticketArray[input][temp - 1].getSoldInfo()))
+                        if (ticketArray[input - 1][temp - 1].getSoldInfo() && !(ticketArray[input - 1][temp - 1].getSoldInfo()))
                         {
                             System.out.println("The Seat above you is Taken, Would you still like that seat\n Type [1] to continue with purchase");
                             if (reader.nextInt() != 1)

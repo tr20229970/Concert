@@ -1,5 +1,5 @@
-<h1> Concert! 🐾 </h1>
-<h2>1. Menu 🔠</h2>
+<h1> Concert! 🎇 </h1>
+<h2>1. Menu 🎶</h2>
 
     Hello! Welcome to Ant Products
     1. Buy a Seat.
@@ -9,47 +9,63 @@
     5. Options.
     6. Exit.
 
-<h2>2. Example ✨</h2>
+<h2>2. Example 🎤</h2>
 
+ 
+    -------------------------------------------
+                        Welcome to 
+                    The Ant Theater
+    ------------------------------------------- 
+    1. Buy a Seat.
+    2. Buy Mutiple Seats.
+    3. Display Seats.
+    4. Check Prices.
+    5. Options.
+    6. Exit. 
+    Input? 1
 
-    Hello! Welcome to Doggie Day Care 🐾
-    1. Add a dog to a specific kennel number.
-    2. Remove a dog from a kennel.
-    3. List occupied kennel numbers along with the name & breed
-    4. Options
-    5. Exit
-    Please enter a kennel number from 1 to 10
-    1
+    -          Please choose a Seat         -
+      [1] [2] [3] [4] [5] [6] [7] [8] [9]
+    [1]   30  30  30  30  30  30  30  30  30
+    [2]   30  30  30  30  30  30  30  30  30
+    [3]   30  30  30  30  30  30  30  30  30
+    [4]   40  40  40  40  40  40  40  40  40
+    [5]   40  40  40  40  40  40  40  40  40
+    [6]   50  50  50  50  50  50  50  50  50
+    [7]   50  50  50  50  50  50  50  50  50
+    [8]   50  50  50  50  50  50  50  50  50
+    -               Thank you               -
 
-    Good News! The Kennel is available!
-    What is the dog's name?
-    ROVER
-    What is the dog's breed?
-    Husky
-    ROVER has been taken to Kennel [1]
+    Witch seat would you like?
+    Row? 2
+    Col? 2
+    Seat [2][2] is now yours
 
-    Please select another option
-    (if you are not sure press [4])
-    3
+    Input? 2
+    Witch seats would you like?
+    Row? 3
+    # of Seats? 5
+    test4Seat [3][1] is now yours
+    Seat [3][2] is now yours
+    Seat [3][3] is now yours
+    Seat [3][4] is now yours
+    Seat [3][5] is now yours
 
-    The Dogs in are Kennel Currently are
-    Kennel [1] has Name, ROVER Breed, Husky
-    Kennel [2] is Empty
-    Kennel [3] is Empty
-    Kennel [4] is Empty
-    Kennel [5] is Empty
-    Kennel [6] is Empty
-    Kennel [7] is Empty
-    Kennel [8] is Empty
-    Kennel [9] is Empty
-    Kennel [10] is Empty
+    Input? 3
 
-    Please select another option
-    (if you are not sure press [4])
-    5
-    Thanks for Visiting, have a great day
+    -          Please choose a Seat         -
+      [1] [2] [3] [4] [5] [6] [7] [8] [9]
+    [1]   30  30  30  30  30  30  30  30  30
+    [2]   30  XX  30  30  30  30  30  30  30
+    [3]   XX  XX  XX  XX  XX  30  30  30  30
+    [4]   40  40  40  40  40  40  40  40  40
+    [5]   40  40  40  40  40  40  40  40  40
+    [6]   50  50  50  50  50  50  50  50  50
+    [7]   50  50  50  50  50  50  50  50  50
+    [8]   50  50  50  50  50  50  50  50  50
+    -              Thank you               -
 
-<h2>3. Credits 🔥</h2>
+<h2>3. Credits 👏</h2>
 
     Made by Tyler Romanowski
     AP Computer Science

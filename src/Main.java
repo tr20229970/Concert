@@ -25,9 +25,9 @@ class Main
 
 
         // The Prices of Each Type of Seat
-        final int firstPrice = 30;
+        final int firstPrice = 50;
         final int secondPrice = 40;
-        final int thirdPrice = 50;
+        final int thirdPrice = 30;
 
 
         newSeat(ticketArray, SEATING_CHART[0], SEATING_CHART[1], firstPrice, secondPrice, thirdPrice);
@@ -59,14 +59,18 @@ class Main
                     System.out.print(" Col? ");
                     temp = reader.nextInt();
 
-                    if ((temp - 2 >= 0))
-                        if (ticketArray[input - 1][temp - 1].getSoldInfo() && !(ticketArray[input - 1][temp - 1].getSoldInfo()))
+                    if(checkSeatsAbove(ticketArray, input, temp - 1) > 0)
+                    {
+                        System.out.print("There are " + checkSeatsAbove(ticketArray, input, temp - 1) + " Seats above you, would you like to Continue? \n(Type [1] to continue with purchase)");
+                        if(reader.nextInt() != 1)
                         {
-                            System.out.println("The Seat above you is Taken, Would you still like that seat\n Type [1] to continue with purchase");
-                            if (reader.nextInt() != 1)
-                                break;
+                            break;
                         }
-                    if(input >= 0 || temp - 1 >= 0)
+
+
+                    }
+
+                    if((input >= 0 || temp - 1 >= 0) )
                     {
                         System.out.println("That seat costs $" + ticketArray[input][temp - 1].getPrice() + "\nDo you still want it? (Type [1] to continue with purchase)");
                         if (reader.nextInt() == 1)
@@ -127,19 +131,28 @@ class Main
 
                 //Default
                 default:
-                    System.out.println("Invalid Input!");
+                    System.out.println("Invalid Input :<");
                     break;
 
             }
             if (input != -1)
             {
-                System.out.print("If you are not sure type [6]\n Input? ");
+                System.out.print("To Access the Menu Type [6]\n Input? ");
                 input = reader.nextInt();
             }
         }
     }
 
-
+    private static int checkSeatsAbove(Concert[][] ticketArray, int row, int col)
+    {
+        int output = 0;
+        for(int i = row; i > 0; i--)
+        {
+            if (ticketArray[i][col].getSoldInfo())
+                output++;
+        }
+        return output;
+    }
     // Chooses a seat, depending on the Price
     private static String chooseByPrice(Concert[][] ticketArray, int[] chart, int firstPrice, int secondPrice, int thirdPrice, int input)
     {

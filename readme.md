@@ -17,13 +17,12 @@
                         Welcome to 
                     The Ant Theater
     ------------------------------------------- 
-    1. Buy a Seat.
+    1. Buy a specific Seat.
     2. Buy Mutiple Seats.
     3. Seat by Price.
     4. Display Seats.
-    5. Check Prices.
-    6. Options.
-    7. Exit. 
+    5. Options.
+    6. Exit. 
     Input? 1
 
     -          Please choose a Seat         -

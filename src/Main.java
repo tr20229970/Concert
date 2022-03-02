@@ -27,21 +27,17 @@ class Main
     // Main Method
     public static void main(String[] args)
     {
-
         newSeat();
-        System.out.println("-------------------------------------------\n                   Welcome to \n                The Ant Theater\n------------------------------------------- ");
-
+        System.out.println("---------------------------------------------\n                   Welcome to \n                The Ant Theater\n--------------------------------------------- ");
         System.out.print(display(ticketArray) + "\n");
-
-        optionsLoop(6);
-
+        optionsLoop(5);
     }
 
 
     // Gives the User a List of Options
     private static void optionsLoop(int input)
     {
-        int temp = 0;
+        int col = 0;
 
         if(input == 0)
         {
@@ -61,25 +57,23 @@ class Main
                     System.out.print("Which seat would you like?\n Row? ");
                     input = reader.nextInt() - 1;
                     System.out.print(" Col? ");
-                    temp = reader.nextInt();
+                    col = reader.nextInt();
 
-                    if(checkSeatsAbove(input, temp - 1) > 0 &&  !ticketArray[input][temp - 1].getSoldInfo())
+                    if(checkSeatsAbove(input, col - 1) > 0 &&  !ticketArray[input][col - 1].getSoldInfo())
                     {
-                        System.out.print("There are " + checkSeatsAbove(input, temp - 1) + " Seats above you, would you like to Continue? \n(Type [1] to continue with purchase)");
+                        System.out.print("There are " + checkSeatsAbove(input, col - 1) + " Seats above you, would you like to Continue? \n(Type [1] to continue with purchase)");
                         if(reader.nextInt() != 1)
                         {
                             System.out.print("Going Back to Menu");
-                            optionsLoop(6);
+                            optionsLoop(5);
                         }
-
-
                     }
 
-                    else if((input >= 0 || temp - 1 >= 0) )
+                    else if((input >= 0 || col - 1 >= 0) )
                     {
-                        System.out.println("That seat costs $" + ticketArray[input][temp - 1].getPrice() + "\nDo you still want it? (Type [1] to continue with purchase)");
+                        System.out.println("That seat costs $" + ticketArray[input][col - 1].getPrice() + "\nDo you still want it? (Type [1] to continue with purchase)");
                         if (reader.nextInt() == 1)
-                            System.out.println(buy(ticketArray, input, temp - 1));
+                            System.out.println(buy(input, col - 1));
                     }
                     else
                     {
@@ -95,7 +89,7 @@ class Main
                     System.out.print("Witch seats would you like?\n Row? ");
                     input = reader.nextInt() - 1;
                     System.out.print(" # of Seats? ");
-                    System.out.println(multipleBuy(ticketArray, input, reader.nextInt() - 1));
+                    System.out.println(multipleBuy(input, reader.nextInt() - 1));
                     input = 6;
                     break;
 
@@ -113,23 +107,14 @@ class Main
                     break;
 
 
-                // Gets the Price
-                case 5:
-                    System.out.println(display(ticketArray));
-                    System.out.print("Witch seat would you like the Price for?\n Row? ");
-                    input = reader.nextInt() - 1;
-                    System.out.print(" Col? ");
-                    System.out.println(" That Seat Costs $" + ticketArray[input][reader.nextInt() - 1].getPrice());
-                    break;
-
 
                 //Options
-                case 6:
-                    System.out.println("    1. Buy a Seat.\n" + "    2. Buy Multiple Seats.\n" + "    3. Seat by Price.\n" + "    4. Display Seats.\n" + "    5. Check Prices.\n" + "    6. Options.\n" + "    7. Exit. \n ");
+                case 5:
+                    System.out.println("1. Buy a Specific Seat.\n" + "2. Buy Multiple Seats.\n" + "3. Seat by Price.\n" + "4. Display Seats.\n" + "5. Options.\n" + "6. Exit. \n ");
                     break;
 
                 //Exit
-                case 7:
+                case 6:
                     System.out.println("Thanks for Visiting!");
                     input = -1;
                     break;
@@ -165,8 +150,7 @@ class Main
     // Chooses a seat, depending on the Price
     private static String chooseByPrice(int input)
     {
-        boolean run = true;
-        while (run)
+        while (true)
         {
 
 
@@ -225,11 +209,9 @@ class Main
                 }
                 return "No Seats are Available in that Price Range";
             }
+            return "No Seats are Available in that Price Range";
 
-            else
-                run = false;
         }
-        return "No Seats are Available in that Price Range";
     }
 
 
@@ -284,7 +266,7 @@ class Main
 
 
     // "Buys" the Seat, if the seat is not already taken
-    private static String buy(Concert[][] ticketArray, int row, int col)
+    private static String buy(int row, int col)
     {
         if (row >= ticketArray.length - 1 || row < 0)
             return "Not a Valid Row";
@@ -305,7 +287,7 @@ class Main
 
 
     // "Buys" multiple Seat, if the seat is not already taken
-    private static String multipleBuy(Concert[][] ticketArray, int row, int numberOfSeats)
+    private static String multipleBuy(int row, int numberOfSeats)
     {
         int count = 0;
         int startingSeat = -1;

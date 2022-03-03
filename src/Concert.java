@@ -21,25 +21,56 @@ public class Concert
         sold = false;
         price = 30;
     }
+
+    //-------------------------------------------------
+    // @Method  - OptionsLoop
+    // @Args    - int inputPrice
+    // @Pre     - Any int
+    // @Comment - sets the default values for the obj
+    // ------------------------------------------------
     Concert(int inputPrice)
     {
         sold = false;
         price = inputPrice;
     }
+
+    //-------------------------------------------------
+    // @Method  - OptionsLoop
+    // @Args    - boolean input
+    // @Comment - sets the sold status
+    // ------------------------------------------------
     void updateSoldStatus(boolean input)
     {
         sold = input;
     }
 
+
+    //-------------------------------------------------
+    // @Method  - getSoldInfo
+    // @Post    - Returns a Boolean
+    // @Comment - Sends back the sold status
+    // ------------------------------------------------
     public boolean getSoldInfo()
     {
         return sold;
     }
 
+
+    //-------------------------------------------------
+    // @Method  - getPrice
+    // @Post    - Returns a String
+    // @Comment - Sends back the Current Price
+    // ------------------------------------------------
     public int getPrice()
     {
         return price;
     }
+
+    //-------------------------------------------------
+    // @Method  - getInfo
+    // @Post    - Returns a String
+    // @Comment - Returns xx, if the obj is sold
+    // ------------------------------------------------
     public String getInfo()
     {
         if(sold)

@@ -9,12 +9,13 @@
 */
 
 import java.util.Scanner;
-// Main Method
+
+
 class Main
 {
-    private static final Concert[][] ticketArray = new Concert[10][10];
-    private static final Scanner reader = new Scanner(System.in);
 
+    // The Amount of seats in the Theater
+    private final static int[] SEATING_SIZE = {10,10};
 
     // Were the Price Changes Happen
     private final static int[] SEATING_CHART = {3, 6};
@@ -23,8 +24,15 @@ class Main
     // The Prices of Each Type of Seat
     private final static int[] SEATING_PRICES = {50, 40, 30};
 
+    private static final Concert[][] ticketArray = new Concert[SEATING_SIZE[0]][SEATING_SIZE[1]];
+    private static final Scanner reader = new Scanner(System.in);
 
-    // Main Method
+
+    //-------------------------------------------------
+    // @Method  - main
+    // @Args    - String[] args
+    // @Comment - The Main Method of the Program
+    // ------------------------------------------------
     public static void main(String[] args)
     {
         newSeat();
@@ -150,6 +158,12 @@ class Main
     // --------------------------------------------------
     private static int checkSeatsAbove(int row, int col)
     {
+        if(row < 0 || row > ticketArray.length - 2)
+            inValidInput(1);
+        if((col > ticketArray[row].length - 1 || col < 0 ))
+            inValidInput(2);
+
+
         int output = 0;
         for(int i = row; i >= 0; i--)
             if (ticketArray[i][col].getSoldInfo())
@@ -168,7 +182,7 @@ class Main
     // --------------------------------------------------
     private static String chooseByPrice(int input)
     {
-        for(int loop = 0; loop < ticketArray.length * ticketArray[loop].length; loop++)
+        for(int loop = 0; loop < (ticketArray.length * ticketArray[loop].length); loop++)
         {
 
             // First Price
@@ -280,9 +294,9 @@ class Main
 
         // Not Valid -- Inputs
         if (row >= ticketArray.length - 1 || row < 0)
-            return "Not a Valid Row";
-        if (col >= ticketArray[row].length || col < 0)
-            return "Not a Valid Column";
+            inValidInput(1);
+        if (col >= ticketArray[row].length - 1 || col < 0)
+            inValidInput(2);
 
         if (!ticketArray[row][col].getSoldInfo())
         {
@@ -291,6 +305,40 @@ class Main
         }
         else
             return "Sorry that seat is taken";
+    }
+
+
+    //------------------------------------------------------
+    // @Method  -  inValidInput
+    // @Comment -  Prints out That row or Column is invalid,
+    // brings user back to menu
+    // -----------------------------------------------------
+    private static void  inValidInput()
+    {
+        System.out.println("Invalid input");
+        optionsLoop(5);
+    }
+
+
+    //------------------------------------------------------
+    // @Method  -  inValidInput (int)
+    // @Args    - int input
+    // @Comment -  Prints out different error depending on
+    // input
+    // -----------------------------------------------------
+    private static void  inValidInput(int input)
+    {
+        switch(input)
+        {
+            default:
+                inValidInput();
+            case 1:
+                System.out.println("That Row # is Invalid");
+                optionsLoop(5);
+            case 2:
+                System.out.println("That Col # is Invalid");
+                optionsLoop(5);
+        }
     }
 
 

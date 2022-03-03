@@ -68,7 +68,7 @@
     [8]   50  50  50  50  50  50  50  50  50
     -              Thank you               -
 
-<h2>3. Credits 👏</h2>
+<h2>3. Credits 🤩</h2>
 
     Made by Tyler Romanowski
     AP Computer Science

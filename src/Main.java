@@ -29,7 +29,7 @@ class Main
     {
         newSeat();
         System.out.println("---------------------------------------------\n                   Welcome to \n                The Ant Theater\n--------------------------------------------- ");
-        System.out.print(display(ticketArray) + "\n");
+        System.out.print(display() + "\n");
         optionsLoop(5);
     }
 
@@ -103,7 +103,7 @@ class Main
 
                 // Displays Screen
                 case 4:
-                    System.out.println(display(ticketArray));
+                    System.out.println(display);
                     break;
 
 
@@ -246,7 +246,7 @@ class Main
 
 
     // Displays the Grid of Seats
-    static private String display(Concert[][] ticketArray)
+    static private String display()
     {
         String output = "\n-             Please choose a Seat           -\n      [1] [2] [3] [4] [5] [6] [7] [8] [9] [10]";
 

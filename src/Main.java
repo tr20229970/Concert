@@ -86,7 +86,7 @@ class Main
 
                 // Multiple Seats
                 case 2:
-                    System.out.print("Witch seats would you like?\n Row? ");
+                    System.out.print("Which seats would you like?\n Row? ");
                     input = reader.nextInt() - 1;
                     System.out.print(" # of Seats? ");
                     System.out.println(multipleBuy(input, reader.nextInt() - 1));
@@ -96,7 +96,7 @@ class Main
 
                 // Picks a Seat Depending on Price Point
                 case 3:
-                    System.out.print(" Witch Price Point?");
+                    System.out.print(" Which Price Point?");
                     System.out.println(chooseByPrice(reader.nextInt()));
                     break;
 
@@ -127,7 +127,7 @@ class Main
             }
             if (input != -1)
             {
-                System.out.print("To Access the Menu Type [6]\n Input? ");
+                System.out.print("To Access the Menu Type [5]\n Input? ");
                 input = reader.nextInt();
             }
         }
@@ -152,8 +152,6 @@ class Main
     {
         while (true)
         {
-
-
             // First Price
             if (input == SEATING_PRICES[0])
             {
@@ -277,7 +275,6 @@ class Main
         {
             ticketArray[row][col].updateSoldStatus(true);
             return "Seat [" + (row + 1) + "]" + "[" + (col + 1) + "] is now purchased\n";
-
         }
         else
         {
@@ -289,16 +286,16 @@ class Main
     // "Buys" multiple Seat, if the seat is not already taken
     private static String multipleBuy(int row, int numberOfSeats)
     {
-        int count = 0;
-        int startingSeat = -1;
-        String output = "";
-        numberOfSeats++;
-
         if (row >= ticketArray.length - 1 || row < 0)
             return "Not a Valid Row";
 
         if (numberOfSeats > ticketArray[row].length || numberOfSeats <= 1)
             return "Wrong Seat Count";
+
+        int count = 0;
+        int startingSeat = -1;
+        String output = "";
+        numberOfSeats++;
 
 
         for (int i = 0; i < ticketArray[row].length; i++)
@@ -321,9 +318,7 @@ class Main
                 i = ticketArray[row].length;
         }
         if (count < numberOfSeats)
-        {
             return "There is not enough room in this row, please choose another row";
-        }
 
         for (int i = startingSeat + 1; i <= (startingSeat + numberOfSeats); i++)
         {

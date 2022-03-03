@@ -42,7 +42,9 @@
     Col? 2
     Seat [2][2] is now purchased
 
+    To Access the Menu Type [5]
     Input? 2
+
     Witch seats would you like?
     Row? 3
     # of Seats? 5

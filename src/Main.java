@@ -2,14 +2,14 @@
   ------------------------------------------------
  | @Name Concert                                |
  | @By Tyler Romanowski      @Created  2.28.22  |
- | @File Main.java           @Modified 2.28.22  |
+ | @File Main.java           @Modified 3.3.22   |
  | @Comment: An 2D Array Exercise, that handles |
  | input, removal, indexing, and printing       |
  -----------------------------------------------
 */
 
 import java.util.Scanner;
-
+// Main Method
 class Main
 {
     private static final Concert[][] ticketArray = new Concert[10][10];
@@ -28,22 +28,30 @@ class Main
     public static void main(String[] args)
     {
         newSeat();
-        System.out.println("---------------------------------------------\n                   Welcome to \n                The Ant Theater\n--------------------------------------------- ");
+        System.out.println("-----------------------------------------------\n                    Welcome to \n                 The Ant Theater\n----------------------------------------------- ");
         System.out.print(display() + "\n");
         optionsLoop(5);
     }
 
 
-    // Gives the User a List of Options
+
+
+
+
+
+
+
+
+
+    //-------------------------------------------------
+    // @Method  - OptionsLoop
+    // @Args    - int input
+    // @Pre     - Any #
+    // @Comment - Gives the User a List of Options
+    // ------------------------------------------------
     private static void optionsLoop(int input)
     {
         int col = 0;
-
-        if(input == 0)
-        {
-            System.out.println("\n  Input? ");
-            input = reader.nextInt();
-        }
 
 
         while (input != -1)
@@ -53,7 +61,7 @@ class Main
 
                 // One Seat
                 case 1:
-                    System.out.println(display(ticketArray));
+                    System.out.println(display());
                     System.out.print("Which seat would you like?\n Row? ");
                     input = reader.nextInt() - 1;
                     System.out.print(" Col? ");
@@ -103,9 +111,8 @@ class Main
 
                 // Displays Screen
                 case 4:
-                    System.out.println(display);
+                    System.out.println(display());
                     break;
-
 
 
                 //Options
@@ -134,39 +141,46 @@ class Main
     }
 
 
-    // Checks to See if there are any Seats Above
+    //---------------------------------------------------
+    // @Method  -  checkSeatsAbove
+    // @Args    -  int row, int col
+    // @Pre     -  valid row, and col
+    // @Post    -  int value of # Seats above the input
+    // @Comment -  Gives the User a List of Options
+    // --------------------------------------------------
     private static int checkSeatsAbove(int row, int col)
     {
         int output = 0;
         for(int i = row; i >= 0; i--)
-        {
             if (ticketArray[i][col].getSoldInfo())
                 output++;
-        }
         return output;
     }
 
 
-    // Chooses a seat, depending on the Price
+    //---------------------------------------------------
+    // @Method  -  chooseByPrice
+    // @Args    -  int input
+    // @Pre     -  any int
+    // @Post    -  String displaying the Seats Bought
+    // @Comment -  Buys a seat, depending on if it's
+    // available in that price range or not
+    // --------------------------------------------------
     private static String chooseByPrice(int input)
     {
-        while (true)
+        for(int loop = 0; loop < ticketArray.length * ticketArray[loop].length; loop++)
         {
+
             // First Price
             if (input == SEATING_PRICES[0])
             {
                 for (int i = 0; i < SEATING_CHART[0]; i++)
-                {
                     for (int k = 0; k < ticketArray[i].length; k++)
-                    {
                         if (!ticketArray[i][k].getSoldInfo())
                         {
                             ticketArray[i][k].updateSoldStatus(true);
                             return "Seat [" + (i + 1) + "]" + "[" + (k + 1) + "] is now purchased\n";
                         }
-
-                    }
-                }
                 return "No Seats are Available in that Price Range";
             }
 
@@ -175,17 +189,12 @@ class Main
             if (input == SEATING_PRICES[1])
             {
                 for (int i = SEATING_CHART[0]; i < SEATING_CHART[1]; i++)
-                {
                     for (int k = 0; k < ticketArray[i].length; k++)
-                    {
                         if (!ticketArray[i][k].getSoldInfo())
                         {
                             ticketArray[i][k].updateSoldStatus(true);
                             return "Seat [" + (i + 1) + "]" + "[" + (k + 1) + "] is now purchased\n";
                         }
-
-                    }
-                }
                 return "No Seats are Available in that Price Range";
             }
 
@@ -194,78 +203,82 @@ class Main
             if (input == SEATING_PRICES[2])
             {
                 for (int i = SEATING_CHART[1]; i < ticketArray.length - 2; i++)
-                {
                     for (int k = 0; k < ticketArray[i].length; k++)
-                    {
                         if (!ticketArray[i][k].getSoldInfo())
                         {
                             ticketArray[i][k].updateSoldStatus(true);
                             return "Seat [" + (i + 1) + "]" + "[" + (k + 1) + "] is now purchased\n";
                         }
 
-                    }
-                }
                 return "No Seats are Available in that Price Range";
             }
+
+            // No Seats Available
             return "No Seats are Available in that Price Range";
 
         }
+        return "";
     }
 
 
-    // Declares all the seats in the Concert Array
+    //---------------------------------------------------
+    // @Method  -  newSeat
+    // @Comment -  Declares the Objects in the Array to
+    // the Current Value
+    // --------------------------------------------------
     private static void newSeat()
     {
+
+        // 1st Price
         for (int i = 0; i < SEATING_CHART[0]; i++)
-        {
             for (int k = 0; k < ticketArray.length; k++)
-            {
                 ticketArray[i][k] = new Concert(SEATING_PRICES[0]);
 
-            }
-        }
 
+        // 2nd Price
         for (int i = SEATING_CHART[0]; i < SEATING_CHART[1]; i++)
-        {
             for (int k = 0; k < ticketArray.length; k++)
-            {
                 ticketArray[i][k] = new Concert(SEATING_PRICES[1]);
-            }
-        }
 
+        // 3rd Price
         for (int i = SEATING_CHART[1]; i < ticketArray.length - 1; i++)
-        {
             for (int k = 0; k < ticketArray[i].length; k++)
-            {
-
                 ticketArray[i][k] = new Concert(SEATING_PRICES[2]);
-            }
-        }
+
 
     }
 
 
-    // Displays the Grid of Seats
+    //---------------------------------------------------
+    // @Method  -  display
+    // @Post    -  String displaying the Seats Bought
+    // @Comment -  Returns the Seating Chart as a String
+    // --------------------------------------------------
     static private String display()
     {
-        String output = "\n-             Please choose a Seat           -\n      [1] [2] [3] [4] [5] [6] [7] [8] [9] [10]";
+        StringBuilder output = new StringBuilder("\n-             Please choose a Seat           -\n      [1] [2] [3] [4] [5] [6] [7] [8] [9] [10]");
 
         for (int i = 0; i < ticketArray.length - 1; i++)
         {
-            output += "\n [" + (i + 1) + "] ";
+            output.append("\n [").append(i + 1).append("] ");
             for (int k = 0; k < ticketArray[i].length; k++)
-            {
-
-                output += "  " + ticketArray[i][k].getInfo();
-            }
+                output.append("  ").append(ticketArray[i][k].getInfo());
         }
         return output + "\n-                  Thank you                 -\n";
     }
 
 
-    // "Buys" the Seat, if the seat is not already taken
+    //------------------------------------------------------
+    // @Method  -  buy
+    // @Args    - int row, int col
+    // @Post    -  String displaying if they bought a seat
+    // @Comment -  "Buys" the Seat, if the seat is not
+    // already taken
+    // -----------------------------------------------------
     private static String buy(int row, int col)
     {
+
+        // Not Valid -- Inputs
         if (row >= ticketArray.length - 1 || row < 0)
             return "Not a Valid Row";
         if (col >= ticketArray[row].length || col < 0)
@@ -277,13 +290,18 @@ class Main
             return "Seat [" + (row + 1) + "]" + "[" + (col + 1) + "] is now purchased\n";
         }
         else
-        {
             return "Sorry that seat is taken";
-        }
     }
 
 
-    // "Buys" multiple Seat, if the seat is not already taken
+    //------------------------------------------------------
+    // @Method  -  multipleBuy
+    // @Args    - int row, int numberOfSeats
+    // @Post    -  String displaying the possible number
+    // seats they bought
+    // @Comment -  "Buys" the Seat, if the seat is not
+    // already taken
+    // -----------------------------------------------------
     private static String multipleBuy(int row, int numberOfSeats)
     {
         if (row >= ticketArray.length - 1 || row < 0)
@@ -294,7 +312,7 @@ class Main
 
         int count = 0;
         int startingSeat = -1;
-        String output = "";
+        StringBuilder output = new StringBuilder();
         numberOfSeats++;
 
 
@@ -303,9 +321,7 @@ class Main
             if (!(count >= numberOfSeats))
             {
                 if (!ticketArray[row][i].getSoldInfo())
-                {
                     count++;
-                }
                 else
                 {
                     count = 0;
@@ -321,10 +337,8 @@ class Main
             return "There is not enough room in this row, please choose another row";
 
         for (int i = startingSeat + 1; i <= (startingSeat + numberOfSeats); i++)
-        {
-            ticketArray[row][i].updateSoldStatus(true);
-            output += "Seat [" + (row + 1) + "]" + "[" + (i + 1) + "] is now purchased\n";
-        }
-        return output;
+            output.append(buy(row, i));
+
+        return output.toString();
     }
 }

@@ -332,12 +332,18 @@ class Main
         {
             default:
                 inValidInput();
+
+                // Row Invalid
             case 1:
                 System.out.println("That Row # is Invalid");
                 optionsLoop(5);
+                break;
+
+            // Col Invalid
             case 2:
                 System.out.println("That Col # is Invalid");
                 optionsLoop(5);
+                break;
         }
     }
 

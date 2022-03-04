@@ -112,7 +112,7 @@ class Main
 
                 // Picks a Seat Depending on Price Point
                 case 3:
-                    System.out.print(" Which Price Point?");
+                    System.out.print(" Which Price Point? ");
                     System.out.println(chooseByPrice(reader.nextInt()));
                     break;
 
@@ -293,9 +293,9 @@ class Main
     {
 
         // Not Valid -- Inputs
-        if (row >= ticketArray.length - 1 || row < 0)
+        if (row >= ticketArray.length || row < 0)
             inValidInput(1);
-        if (col >= ticketArray[row].length - 1 || col < 0)
+        if (col >= ticketArray[row].length || col < 0)
             inValidInput(2);
 
         if (!ticketArray[row][col].getSoldInfo())
@@ -391,7 +391,10 @@ class Main
             return "There is not enough room in this row, please choose another row";
 
         for (int i = startingSeat + 1; i <= (startingSeat + numberOfSeats); i++)
+        {
+            System.out.println(i);
             output.append(buy(row, i));
+        }
 
         return output.toString();
     }

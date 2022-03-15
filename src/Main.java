@@ -1,11 +1,18 @@
 /*
-  ------------------------------------------------
- | @Name Concert                                |
- | @By Tyler Romanowski      @Created  2.28.22  |
- | @File Main.java           @Modified 3.3.22   |
- | @Comment: An 2D Array Exercise, that handles |
- | input, removal, indexing, and printing       |
- -----------------------------------------------
+  --------------------------------------------------
+ | @Name Concert                                   |
+ | @By Tyler Romanowski      @Created  2.28.22     |
+ | @File Main.java           @Modified 3.15.22     |
+ | @P-Comment: An 2D Array Exercise, that handles  |
+ | input, removal, indexing, and printing          |
+ |-------------------------------------------------|
+ | @Comment: This is the Main Class for the        |
+ | Concert Program, it handles, the creation of    |
+ | the array, declaration of elements in the array |
+ | & updating objects in the array. The main       |
+ | purpose of the program, is to display and sell  |
+ | sets for a Concert hall program                 |
+ ---------------------------------------------------
 */
 
 import java.util.Scanner;
@@ -79,6 +86,8 @@ class Main
                     System.out.print(" Col? ");
                     col = reader.nextInt();
                     System.out.print("test" + input);
+
+
                     if(checkSeatsAbove(input, col - 1) > 0 &&  !ticketArray[input][col - 1].getSoldInfo())
                     {
                         System.out.print("There are " + checkSeatsAbove(input, col - 1) + " Seats above you, would you like to Continue? \n(Type [1] to continue with purchase)");
@@ -89,12 +98,14 @@ class Main
                         }
                     }
 
+
                     else if((input >= 0 || col - 1 >= 0) )
                     {
                         System.out.println("That seat costs $" + ticketArray[input][col - 1].getPrice() + "\nDo you still want it? (Type [1] to continue with purchase)");
                         if (reader.nextInt() == 1)
                             System.out.println(buy(input, col - 1));
                     }
+
                     else
                     {
                         System.out.println("Invalid input");

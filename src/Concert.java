@@ -1,14 +1,22 @@
 /*
   ------------------------------------------------
- | @Name Concert                                |
- | @By Tyler Romanowski      @Created  2.28.22  |
- | @File Concert.java        @Modified 3.3.22  |
- | @Comment: An 2D Array Exercise, that handles |
- | input, removal, indexing, and printing       |
- |--------------------------------------------- |
- | @Methods updateSoldStatus(bol)               |
- |getSoldInfo() getInfo() toString() getPrice() |
- -----------------------------------------------
+ | @Name Concert                                  |
+ | @By Tyler Romanowski      @Created  2.28.22    |
+ | @File Concert.java        @Modified 3.3.22     |
+ | @P-Comment: An 2D Array Exercise, that handles |
+ | input, removal, indexing, and printing         |
+ |---------------------------------------------   |
+ | @Methods updateSoldStatus(bol)                 |
+ |getSoldInfo() getInfo() toString() getPrice()   |
+ |----------------------------------------------- |
+ |@Comment - This is the Concert Class, it        |
+ |handles storing the price and the sold Status   |
+ |along with returning that information, in both  |
+ |the actual representation, and one for display  |
+ -------------------------------------------------
+
+
+
 */
 
 public class Concert

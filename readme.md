@@ -70,8 +70,9 @@
 
 <h2>3. Credits 🤩</h2>
 
-    Made by Tyler Romanowski
-    AP Computer Science
+>Made by Tyler Romanowski
+> <br> AP Computer Science
+> <br>Powered by Java
 
 
 

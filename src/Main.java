@@ -15,7 +15,7 @@ class Main
 {
 
     // The Amount of seats in the Theater
-    private final static int[] SEATING_SIZE = {10,10};
+    private final static int[] SEATING_SIZE = {9,10};
 
     // Were the Price Changes Happen
     private final static int[] SEATING_CHART = {3, 6};
@@ -36,7 +36,11 @@ class Main
     public static void main(String[] args)
     {
         newSeat();
-        System.out.println("-----------------------------------------------\n                    Welcome to \n                 The Ant Theater\n----------------------------------------------- ");
+        System.out.println("" +
+                "-----------------------------------------------\n" +
+                "                    Welcome to \n" +
+                "                 The Ant Theater" +
+                "\n----------------------------------------------- ");
         System.out.print(display() + "\n");
         optionsLoop(5);
     }
@@ -74,7 +78,7 @@ class Main
                     input = reader.nextInt() - 1;
                     System.out.print(" Col? ");
                     col = reader.nextInt();
-
+                    System.out.print("test" + input);
                     if(checkSeatsAbove(input, col - 1) > 0 &&  !ticketArray[input][col - 1].getSoldInfo())
                     {
                         System.out.print("There are " + checkSeatsAbove(input, col - 1) + " Seats above you, would you like to Continue? \n(Type [1] to continue with purchase)");
@@ -158,7 +162,7 @@ class Main
     // --------------------------------------------------
     private static int checkSeatsAbove(int row, int col)
     {
-        if(row < 0 || row > ticketArray.length - 2)
+        if(row < 0 || row > ticketArray.length - 1)
             inValidInput(1);
         if((col > ticketArray[row].length - 1 || col < 0 ))
             inValidInput(2);
@@ -245,18 +249,18 @@ class Main
 
         // 1st Price
         for (int i = 0; i < SEATING_CHART[0]; i++)
-            for (int k = 0; k < ticketArray.length; k++)
+            for (int k = 0; k < SEATING_SIZE[1]; k++)
                 ticketArray[i][k] = new Concert(SEATING_PRICES[0]);
 
 
         // 2nd Price
         for (int i = SEATING_CHART[0]; i < SEATING_CHART[1]; i++)
-            for (int k = 0; k < ticketArray.length; k++)
+            for (int k = 0; k < SEATING_SIZE[1]; k++)
                 ticketArray[i][k] = new Concert(SEATING_PRICES[1]);
 
         // 3rd Price
-        for (int i = SEATING_CHART[1]; i < ticketArray.length - 1; i++)
-            for (int k = 0; k < ticketArray[i].length; k++)
+        for (int i = SEATING_CHART[1]; i < ticketArray.length; i++)
+            for (int k = 0; k < SEATING_SIZE[1]; k++)
                 ticketArray[i][k] = new Concert(SEATING_PRICES[2]);
 
 
@@ -272,7 +276,7 @@ class Main
     {
         StringBuilder output = new StringBuilder("\n-             Please choose a Seat           -\n      [1] [2] [3] [4] [5] [6] [7] [8] [9] [10]");
 
-        for (int i = 0; i < ticketArray.length - 1; i++)
+        for (int i = 0; i < ticketArray.length; i++)
         {
             output.append("\n [").append(i + 1).append("] ");
             for (int k = 0; k < ticketArray[i].length; k++)
@@ -292,10 +296,11 @@ class Main
     private static String buy(int row, int col)
     {
 
+        System.out.print("test 2 - " + row);
         // Not Valid -- Inputs
-        if (row >= ticketArray.length || row < 0)
+        if (row > ticketArray.length  || row < 0)
             inValidInput(1);
-        if (col >= ticketArray[row].length || col < 0)
+        if (col > ticketArray[row].length || col < 0)
             inValidInput(2);
 
         if (!ticketArray[row][col].getSoldInfo())

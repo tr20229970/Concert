@@ -2,7 +2,7 @@
   --------------------------------------------------
  | @Name Concert                                   |
  | @By Tyler Romanowski      @Created  2.28.22     |
- | @File Main.java           @Modified 3.15.22     |
+ | @File Main.java           @Modified 3.21.22     |
  | @P-Comment: An 2D Array Exercise, that handles  |
  | input, removal, indexing, and printing          |
  |-------------------------------------------------|
@@ -34,12 +34,14 @@ class Main
     private static final Concert[][] ticketArray = new Concert[SEATING_SIZE[0]][SEATING_SIZE[1]];
     private static final Scanner reader = new Scanner(System.in);
 
+/*
+    -------------------------------------------------
+   *  @Method  - main
+   *  @Args    - String[] args
+   *  @Comment - The Main Method of the Program
+     ------------------------------------------------
 
-    //-------------------------------------------------
-    // @Method  - main
-    // @Args    - String[] args
-    // @Comment - The Main Method of the Program
-    // ------------------------------------------------
+ */
     public static void main(String[] args)
     {
         newSeat();
@@ -54,20 +56,15 @@ class Main
 
 
 
+/*
+    -------------------------------------------------
+    * @Method  - OptionsLoop
+    * @Args    - int input
+    * @Pre     - Any #
+    * @Comment - Gives the User a List of Options
+    ------------------------------------------------
 
-
-
-
-
-
-
-
-    //-------------------------------------------------
-    // @Method  - OptionsLoop
-    // @Args    - int input
-    // @Pre     - Any #
-    // @Comment - Gives the User a List of Options
-    // ------------------------------------------------
+ */
     private static void optionsLoop(int input)
     {
         int col = 0;
@@ -82,43 +79,16 @@ class Main
                 case 1:
                     System.out.println(display());
                     System.out.print("Which seat would you like?\n Row? ");
-                    input = reader.nextInt() - 1;
+                    input = reader.nextInt() - 1; //temp storage for the row #
                     System.out.print(" Col? ");
-                    col = reader.nextInt();
-                    System.out.print("test" + input);
-
-
-                    if(checkSeatsAbove(input, col - 1) > 0 &&  !ticketArray[input][col - 1].getSoldInfo())
-                    {
-                        System.out.print("There are " + checkSeatsAbove(input, col - 1) + " Seats above you, would you like to Continue? \n(Type [1] to continue with purchase)");
-                        if(reader.nextInt() != 1)
-                        {
-                            System.out.print("Going Back to Menu");
-                            optionsLoop(5);
-                        }
-                    }
-
-
-                    else if((input >= 0 || col - 1 >= 0) )
-                    {
-                        System.out.println("That seat costs $" + ticketArray[input][col - 1].getPrice() + "\nDo you still want it? (Type [1] to continue with purchase)");
-                        if (reader.nextInt() == 1)
-                            System.out.println(buy(input, col - 1));
-                    }
-
-                    else
-                    {
-                        System.out.println("Invalid input");
-                        input = 6;
-                    }
-
+                    buyRequest(input, reader.nextInt() - 1);
                     break;
 
 
                 // Multiple Seats
                 case 2:
                     System.out.print("Which seats would you like?\n Row? ");
-                    input = reader.nextInt() - 1;
+                    input = reader.nextInt() - 1; //temp storage for the row #
                     System.out.print(" # of Seats? ");
                     System.out.println(multipleBuy(input, reader.nextInt() - 1));
                     input = 6;
@@ -140,7 +110,12 @@ class Main
 
                 //Options
                 case 5:
-                    System.out.println("1. Buy a Specific Seat.\n" + "2. Buy Multiple Seats.\n" + "3. Seat by Price.\n" + "4. Display Seats.\n" + "5. Options.\n" + "6. Exit. \n ");
+                    System.out.println("1. Buy a Specific Seat.\n" +
+                            "2. Buy Multiple Seats.\n" +
+                            "3. Seat by Price.\n" +
+                            "4. Display Seats.\n" +
+                            "5. Options.\n" +
+                            "6. Exit. \n ");
                     break;
 
                 //Exit
@@ -164,13 +139,56 @@ class Main
     }
 
 
-    //---------------------------------------------------
-    // @Method  -  checkSeatsAbove
-    // @Args    -  int row, int col
-    // @Pre     -  valid row, and col
-    // @Post    -  int value of # Seats above the input
-    // @Comment -  Gives the User a List of Options
-    // --------------------------------------------------
+    /*---------------------------------------------------
+    * @Method  -  checkSeatsAbove
+    * @Args    -  int row, int col
+    * @Post    -  int value of # Seats above the input
+    * @Comment -  After user inputs, the row, and col
+    * they would like, this method valid them, checks to
+    * see if there are any seats above, prints out the
+    * seats above, and the price and asks if the user likes
+    * to continue
+     --------------------------------------------------
+
+     */
+    private static void buyRequest(int row, int col)
+    {
+        if((row < 0 || col < 0) || row > ticketArray.length - 1 || col > ticketArray[row].length - 1)
+            inValidInput();
+
+        if(ticketArray[row][col].getSoldInfo())
+            inValidInput(4);
+
+        if(checkSeatsAbove(row, col) > 0)
+        {
+            System.out.print("There are " + checkSeatsAbove(row, col) + " Seats above you, would you like to Continue? " +
+                    "\n(Type [1] to continue with purchase)");
+
+            if(reader.nextInt() != 1)
+            {
+                System.out.print("Going Back to Menu");
+                optionsLoop(5);
+            }
+        }
+
+
+        System.out.println("That seat costs $" + ticketArray[row][col].getPrice() +
+                    "\nDo you still want it? (Type [1] to continue with purchase)");
+        if (reader.nextInt() == 1)
+            System.out.println(buy(row, col));
+    }
+
+
+
+    /*---------------------------------------------------
+   *  @Method  -  checkSeatsAbove
+   *  @Args    -  int row, int col
+   *  @Pre     -  valid row, and col
+   *  @Post    -  int value of # Seats above the input
+   *  @Comment -  Gives the User a List of Options
+      --------------------------------------------------
+     */
+
     private static int checkSeatsAbove(int row, int col)
     {
         if(row < 0 || row > ticketArray.length - 1)
@@ -187,14 +205,16 @@ class Main
     }
 
 
-    //---------------------------------------------------
-    // @Method  -  chooseByPrice
-    // @Args    -  int input
-    // @Pre     -  any int
-    // @Post    -  String displaying the Seats Bought
-    // @Comment -  Buys a seat, depending on if it's
-    // available in that price range or not
-    // --------------------------------------------------
+    /*
+    ---------------------------------------------------
+   *  @Method  -  chooseByPrice
+   *  @Args    -  int input
+   *  @Pre     -  any int
+   *  @Post    -  String displaying the Seats Bought
+   *  @Comment -  Buys a seat, depending on if it's
+   *  available in that price range or not
+      --------------------------------------------------
+     */
     private static String chooseByPrice(int input)
     {
         for(int loop = 0; loop < (ticketArray.length * ticketArray[loop].length); loop++)
@@ -250,11 +270,13 @@ class Main
     }
 
 
-    //---------------------------------------------------
-    // @Method  -  newSeat
-    // @Comment -  Declares the Objects in the Array to
-    // the Current Value
-    // --------------------------------------------------
+    /*
+    ---------------------------------------------------
+    * @Method  -  newSeat
+    * @Comment -  Declares the Objects in the Array to
+    * the Current Value
+     --------------------------------------------------
+     */
     private static void newSeat()
     {
 
@@ -268,6 +290,7 @@ class Main
         for (int i = SEATING_CHART[0]; i < SEATING_CHART[1]; i++)
             for (int k = 0; k < SEATING_SIZE[1]; k++)
                 ticketArray[i][k] = new Concert(SEATING_PRICES[1]);
+
 
         // 3rd Price
         for (int i = SEATING_CHART[1]; i < ticketArray.length; i++)
@@ -285,13 +308,13 @@ class Main
     // --------------------------------------------------
     static private String display()
     {
-        StringBuilder output = new StringBuilder("\n-             Please choose a Seat           -\n      [1] [2] [3] [4] [5] [6] [7] [8] [9] [10]");
+        String output = ("\n-             Please choose a Seat           -\n      [1] [2] [3] [4] [5] [6] [7] [8] [9] [10]");
 
         for (int i = 0; i < ticketArray.length; i++)
         {
-            output.append("\n [").append(i + 1).append("] ");
+            output += ("\n [") + (i + 1) +("] ");
             for (int k = 0; k < ticketArray[i].length; k++)
-                output.append("  ").append(ticketArray[i][k].getInfo());
+                output += ("  ") + (ticketArray[i][k].getInfo());
         }
         return output + "\n-                  Thank you                 -\n";
     }
@@ -307,7 +330,6 @@ class Main
     private static String buy(int row, int col)
     {
 
-        System.out.print("test 2 - " + row);
         // Not Valid -- Inputs
         if (row > ticketArray.length  || row < 0)
             inValidInput(1);
@@ -319,8 +341,8 @@ class Main
             ticketArray[row][col].updateSoldStatus(true);
             return "Seat [" + (row + 1) + "]" + "[" + (col + 1) + "] is now purchased\n";
         }
-        else
-            return "Sorry that seat is taken";
+
+        return "Sorry that seat is taken";
     }
 
 
@@ -346,20 +368,29 @@ class Main
     {
         switch(input)
         {
+            // Random Invalid
             default:
                 inValidInput();
 
-                // Row Invalid
+            // Row Invalid
             case 1:
                 System.out.println("That Row # is Invalid");
                 optionsLoop(5);
-                break;
 
             // Col Invalid
             case 2:
                 System.out.println("That Col # is Invalid");
                 optionsLoop(5);
-                break;
+
+            // Seat Count Invalid
+            case 3:
+                System.out.println("Wrong Seat Count");
+                optionsLoop(5);
+
+            case 4:
+                System.out.println("Seat Already Sold");
+                optionsLoop(5);
+
         }
     }
 
@@ -374,15 +405,16 @@ class Main
     // -----------------------------------------------------
     private static String multipleBuy(int row, int numberOfSeats)
     {
-        if (row >= ticketArray.length - 1 || row < 0)
-            return "Not a Valid Row";
+        if (row >= ticketArray.length || row < 0)
+            inValidInput(1); // Invalid Row
 
         if (numberOfSeats > ticketArray[row].length || numberOfSeats <= 1)
-            return "Wrong Seat Count";
+            inValidInput(3); // Wrong Seat Count
+
 
         int count = 0;
         int startingSeat = -1;
-        StringBuilder output = new StringBuilder();
+        String output = "";
         numberOfSeats++;
 
 
@@ -409,9 +441,9 @@ class Main
         for (int i = startingSeat + 1; i <= (startingSeat + numberOfSeats); i++)
         {
             System.out.println(i);
-            output.append(buy(row, i));
+            output += (buy(row, i));
         }
 
-        return output.toString();
+        return output;
     }
 }

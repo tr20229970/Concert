@@ -32,6 +32,7 @@ class Main
     private final static int[] SEATING_PRICES = {50, 40, 30};
 
     private static final Concert[][] ticketArray = new Concert[SEATING_SIZE[0]][SEATING_SIZE[1]];
+
     private static final Scanner reader = new Scanner(System.in);
 
 /*
@@ -48,7 +49,7 @@ class Main
         System.out.println("" +
                 "-----------------------------------------------\n" +
                 "                    Welcome to \n" +
-                "                 The Ant Theater " +
+                "                 The Ant Theater" +
                 "\n----------------------------------------------- ");
         System.out.print(display() + "\n");
         optionsLoop(5);
@@ -67,7 +68,6 @@ class Main
  */
     private static void optionsLoop(int input)
     {
-        int col = 0;
 
 
         while (input != -1)

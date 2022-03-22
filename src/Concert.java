@@ -83,7 +83,7 @@ public class Concert
     {
         if(sold)
             return "XX";
-        return "" + price;
+        return "" +price;
     }
     public String toString()
     {

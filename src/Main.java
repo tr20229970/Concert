@@ -113,7 +113,7 @@ class Main
                     System.out.println("1. Buy a Specific Seat.\n" +
                             "2. Buy Multiple Seats.\n" +
                             "3. Seat by Price.\n" +
-                            "4. Display Seats.\n" +
+                            "4. Display Seats.\n " +
                             "5. Options.\n" +
                             "6. Exit. \n ");
                     break;

@@ -120,13 +120,13 @@ class Main
 
                 //Exit
                 case 6:
-                    System.out.println("Thanks for Visiting!");
+                    System.out.println("Thanks for Visiting! ");
                     input = -1;
                     break;
 
                 //Default
                 default:
-                    System.out.println("Invalid Input :<");
+                    System.out.println("Invalid Input :< ");
                     break;
 
             }

@@ -48,7 +48,7 @@ class Main
         System.out.println("" +
                 "-----------------------------------------------\n" +
                 "                    Welcome to \n" +
-                "                 The Ant Theater" +
+                "                 The Ant Theater " +
                 "\n----------------------------------------------- ");
         System.out.print(display() + "\n");
         optionsLoop(5);

@@ -80,7 +80,7 @@ class Main
                     System.out.println(display());
                     System.out.print("Which seat would you like?\n Row? ");
                     input = reader.nextInt() - 1; //temp storage for the row #
-                    System.out.print(" Col? ");
+                    System.out.print(" Col?  ");
                     buyRequest(input, reader.nextInt() - 1);
                     break;
 

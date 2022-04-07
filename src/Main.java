@@ -31,8 +31,10 @@ class Main
     // The Prices of Each Type of Seat
     private final static int[] SEATING_PRICES = {50, 40, 30};
 
+  
     private static final Concert[][] ticketArray = new Concert[SEATING_SIZE[0]][SEATING_SIZE[1]];
 
+  
     private static final Scanner reader = new Scanner(System.in);
 
 /*
@@ -368,6 +370,7 @@ class Main
     {
         switch(input)
         {
+            
             // Random Invalid
             default:
                 inValidInput();
@@ -386,7 +389,8 @@ class Main
             case 3:
                 System.out.println("Wrong Seat Count");
                 optionsLoop(5);
-
+            
+            // Seat Already Sold
             case 4:
                 System.out.println("Seat Already Sold");
                 optionsLoop(5);
@@ -423,7 +427,9 @@ class Main
             if (!(count >= numberOfSeats))
             {
                 if (!ticketArray[row][i].getSoldInfo())
+                {
                     count++;
+                }
                 else
                 {
                     count = 0;
@@ -433,16 +439,15 @@ class Main
                 }
             }
             else
+            {
                 i = ticketArray[row].length;
+            }
         }
         if (count < numberOfSeats)
             return "There is not enough room in this row, please choose another row";
 
         for (int i = startingSeat + 1; i <= (startingSeat + numberOfSeats); i++)
-        {
-            System.out.println(i);
             output += (buy(row, i));
-        }
 
         return output;
     }

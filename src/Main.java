@@ -82,7 +82,7 @@ class Main
                     System.out.println(display());
                     System.out.print("Which seat would you like?\n Row? ");
                     input = reader.nextInt() - 1; //temp storage for the row #
-                    System.out.print(" Col?  ");
+                    System.out.print(" Col? ");
                     buyRequest(input, reader.nextInt() - 1);
                     break;
 
@@ -115,9 +115,9 @@ class Main
                     System.out.println("1. Buy a Specific Seat.\n" +
                             "2. Buy Multiple Seats.\n" +
                             "3. Seat by Price.\n" +
-                            "4. Display Seats.\n " +
+                            "4. Display Seats.\n" +
                             "5. Options.\n" +
-                            "6. Exit. \n ");
+                            "6. Exit. \n");
                     break;
 
                 //Exit
